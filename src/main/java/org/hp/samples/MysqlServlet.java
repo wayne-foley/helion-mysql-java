@@ -62,13 +62,13 @@ public class MysqlServlet extends HttpServlet {
                 // In this case, MySQL is the only bound service.
                 JsonRootNode root = new JdomParser().parse(vcap_services);
 
-                JsonNode mysqlNode = root.getNode("mysql");
+                JsonNode mysqlNode = root.getNode("mysql-production");
                 JsonNode credentials = mysqlNode.getNode(0).getNode("credentials");
 
                 // Grab login info for MySQL from the credentials node
-                String dbname = credentials.getStringValue("name");
-                String hostname = credentials.getStringValue("hostname");
-                String user = credentials.getStringValue("user");
+                String dbname = credentials.getStringValue("database");
+                String hostname = credentials.getStringValue("host");
+                String user = credentials.getStringValue("username");
                 String password = credentials.getStringValue("password");
                 String port = credentials.getNumberValue("port");
 
